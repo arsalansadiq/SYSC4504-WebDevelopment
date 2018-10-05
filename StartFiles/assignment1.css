@@ -81,11 +81,20 @@ input[name=Title] {
     box-sizing: border-box;
 }
 
-input[name=Description] {
+textarea[name=Description] {
     width: 96%;
     height: 80px;
     margin-left: 1em;
     margin-right: 1em;
     box-sizing: border-box;
-    resize: vertical;
+    resize: both;
+}
+
+select{
+  width: 35%;
+  /*padding: 12px 20px;
+  margin-left:  8px 0;*/
+  margin-left: 1em;
+  margin-right: 1em;
+  box-sizing: border-box;
 }
