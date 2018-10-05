@@ -20,12 +20,12 @@ header, footer {
   background-color: #1A237E;
   margin: 0em 4em 0.25em 4em;
 }
-header h1 { 
+header h1 {
   padding: 0.5rem 0 0 1.25rem;
   font-size: 2rem;
   font-weight: bold;
 }
-header p { 
+header p {
   font-size: 1rem;
   font-style: italic;
   margin-bottom: 1rem;
@@ -47,7 +47,7 @@ section {
 }
 
 
-legend { 
+legend {
   font-size: 1.35rem;
   background-color: #7986CB;
   height: 1.70rem;
@@ -69,4 +69,23 @@ form p {
    margin-top: 0.5em;
 }
 
+label{
+    margin-left: 1em;
+}
+input[name=Title] {
+    width: 96%;
+    /*padding: 12px 20px;
+    margin-left:  8px 0;*/
+    margin-left: 1em;
+    margin-right: 1em;
+    box-sizing: border-box;
+}
 
+input[name=Description] {
+    width: 96%;
+    height: 80px;
+    margin-left: 1em;
+    margin-right: 1em;
+    box-sizing: border-box;
+    resize: vertical;
+}
