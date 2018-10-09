@@ -107,3 +107,15 @@ select{
   margin-right: 1em;
   box-sizing: border-box;
 }
+
+article{
+  float:right;
+   width:50%;
+   border: 0.5px solid #7986CB;
+   margin-top: 1em;
+   margin-right: 2.6em;
+}
+input[type=radio]{
+  margin-left: 1em;
+  margin-right: 1em;
+}
