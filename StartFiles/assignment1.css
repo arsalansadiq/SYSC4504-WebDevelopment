@@ -108,14 +108,14 @@ select{
   box-sizing: border-box;
 }
 
-article{
+div{
   float:right;
    width:50%;
    border: 0.5px solid #7986CB;
    margin-top: 1em;
    margin-right: 2.6em;
 }
-input[type=radio]{
+input[name=what]{
   margin-left: 1em;
   margin-right: 1em;
 }
