@@ -25,18 +25,19 @@
             <textarea name="Description" placeholder="Adding a rich description will help with search results"></textarea>
           </p>
 
-          <div class="copyright">
+          <article class="copyright">
             <label>Copyright?</label><br>
             <input type="radio" name="what" value="1">All rights reserved</input><br>
             <input type="radio" name="what" value="2">Creative Commons</input>
-          </div>
+          </article>
 
-          <div class="CreativeCommonTypes">
+          <article class="CreativeCommonTypes">
             <label>Creative Common Types</label><br>
             <input type="checkbox" name="what" value="1">Attribution</input><br>
             <input type="checkbox" name="what" value="2">Noncommercial</input><br>
             <input type="checkbox" name="what" value="3">No Derivative Works</input>
-          </div>
+          </article>
+
           <p>
             <label>Continent</label><br>
             <select name="Continent">
@@ -108,6 +109,33 @@
               <option>Johannesburg</option>
               <option></option>
             </datalist>
+          </p>
+
+          <p id="background">
+              <label>I accept the Software License</label>
+                <input type="checkbox" name="accept"></input>
+          </p>
+
+          <article class="dateAndTime">
+            <label>Date Taken:</label><br>
+            <input type="date" name="what"><br>
+            <label>Time Taken</label><br>
+            <input type="time" name="what">
+          </article>
+
+          <p>
+            <label>Rate this Photo:</label><br>
+            <input type="number" name="what" min="1" max="5" value="">
+          </p>
+
+          <p>
+            <label>Colour Collection:</label><br>
+            <input type="color" name="what"></input>
+          </p>
+
+          <p id="Buttons">
+            <input type="submit" name="" value="Submit">
+            <input type="reset" name="" value="Clear Form"></input>
           </p>
 
         </fieldset>
