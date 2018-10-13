@@ -15,129 +15,179 @@
     <section>
       <form  action="http://www.randyconnolly.com/tests/process.php" method="post">
         <fieldset>
-          <legend>PHOTO DETAILS</legend>
-          <p>
-            <label>Title</label><br>
-            <input type="text" name="Title" placeholder="Give your photo a descriptive name" >
-          </p>
-          <p>
-            <label>Description</label><br>
-            <textarea name="Description" placeholder="Adding a rich description will help with search results"></textarea>
-          </p>
+          <table>
+            <tr>
+              <legend>PHOTO DETAILS</legend>
+            </tr >
+            <tr>
+              <td colspan="2">
+                <label>Title</label><br>
+                <input type="text" name="Title" placeholder="Give your photo a descriptive name" >
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <label>Description</label><br>
+                <textarea name="Description" placeholder="Adding a rich description will help with search results"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td id="location">
+                <label>Continent</label><br>
+                <select name="Continent">
+                  <option value="Not Chosen">Choose continent</option>
+                  <option value="Africa">Africa</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Australasia">Australasia</option>
+                  <option value="Europe">Europe</option>
+                  <option value="North America">North America</option>
+                  <option value="South America">South America</option>
+                </select><br>
 
-          <article class="copyright">
-            <label>Copyright?</label><br>
-            <input type="radio" name="what" value="1">All rights reserved</input><br>
-            <input type="radio" name="what" value="2">Creative Commons</input>
-          </article>
+                <label>Country</label><br>
+                <select name="Country">
+                  <option value="1">Choose continent</option>
+                  <optgroup label="Africa">
+                    <option>South Africa</option>
+                    <option>Kenya</option>
+                    <option>Tanzania</option>
+                    <option>Egypt</option>
+                    <option>Morocco</option>
+                  </optgroup>
+                  <optgroup label="Asia">
+                    <option>Japan</option>
+                  <option>India</option>
+                    <option>China</option>
+                    <option>Indonesia</option>
+                    <option>Japan</option>
+                    <option>Malasia</option>
+                  </optgroup>
+                  <optgroup label="Australasia">
+                    <option>Australia</option>
+                    <option>New Zealand</option>
+                    <option>Papua New Guinea</option>
+                  </optgroup>
+                  <optgroup label="Europe">
+                    <option>Germany</option>
+                    <option>France</option>
+                    <option>Italy</option>
+                    <option>Spain</option>
+                    <option>United Kingdom</option>
+                    <option>Croatia</option>
+                    <option>Switzerland</option>
+                    <option>Belguim</option>
+                  </optgroup>
+                  <optgroup label="North America">
+                    <option>United States of America</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                    <option>Cuba</option>
+                    <option>Jamaica</option>
+                  </optgroup>
+                  <optgroup label="South America">
+                    <option>Brazil</option>
+                    <option>Argentina</option>
+                    <option>Peru</option>
+                    <option>Chile</option>
+                  </optgroup>
+                </select><br>
 
-          <article class="CreativeCommonTypes">
-            <label>Creative Common Types</label><br>
-            <input type="checkbox" name="what" value="1">Attribution</input><br>
-            <input type="checkbox" name="what" value="2">Noncommercial</input><br>
-            <input type="checkbox" name="what" value="3">No Derivative Works</input>
-          </article>
+                <label>City</label><br>
+                <input type="text" name="City" list="Cities" >
+                <datalist id="Cities">
+                  <option>Cape Town</option>
+                  <option>Johannesburg</option>
+                  <option>Nairobi</option>
+                  <option>Dar Es Salam</option>
+                  <option>Cairo</option>
+                  <option>Rabat</option>
+                  <option>Tokyo</option>
+                  <option>Mumbai</option>
+                  <option>Beijing</option>
+                  <option>Jakarta</option>
+                  <option>Kuala Lumpur</option>
+                  <option>Canberra</option>
+                  <option>Wellington</option>
+                  <option>Port Moresby</option>
+                  <option>Berlin</option>
+                  <option>Darmstadt</option>
+                  <option>Paris</option>
+                  <option>Rome</option>
+                  <option>Madrid</option>
+                  <option>London</option>
+                  <option>Bern</option>
+                  <option>Zagreb</option>
+                  <option>Brussels</option>
+                  <option>Washington D.C.</option>
+                  <option>Ottawa</option>
+                  <option>Mexico City</option>
+                  <option>Havana</option>
+                  <option>Kingston</option>
+                  <option>Brasilia</option>
+                  <option>Buenos Aires</option>
+                  <option>Lima</option>
+                  <option>Santiago</option>
+                </datalist>
+              </td>
+              <td>
+                <article >
+                  <label>Copyright?</label><br>
+                  <input type="radio" name="Copyright" value="1">All rights reserved</input><br>
+                  <input type="radio" name="Copyright" value="2" checked>Creative Commons</input>
+                </article>
 
-          <p>
-            <label>Continent</label><br>
-            <select name="Continent">
-              <option value="1">Choose continent</option>
-              <option value="2">Africa</option>
-              <option value="3">Asia</option>
-              <option value="4">Australasia</option>
-              <option value="5">Europe</option>
-              <option value="6">North America</option>
-              <option value="7">South America</option>
-            </select>
-          </p>
+                <article class="CreativeCommonTypes">
+                  <label>Creative Common Types</label><br>
+                  <input type="checkbox" name="cc" value="1">Attribution</input><br>
+                  <input type="checkbox" name="cc" value="2">Noncommercial</input><br>
+                  <input type="checkbox" name="cc" value="3">No Derivative Works</input>
+                </article>
+              </td>
+            </tr>
 
+            <tr>
+              <td colspan="2">
+                <p id="background">
+                  <label>I accept the software license</label>
+                  <input type="hidden" name="accept" value="off"></input>
+                  <input type="checkbox" name="accept" value="on" ></input>
+                </p>
+              </td>
+            </tr>
 
-          <p>
-            <label>Country</label><br>
-            <select name="Country">
-              <option value="1">Choose continent</option>
-              <optgroup label="Africa">
-                <option value="2">South Africa</option>
-                <option value="3">Kenya</option>
-                <option value="4">Tanzania</option>
-                <option value="5">Egypt</option>
-                <option value="6">Morocco</option>
-              </optgroup>
-              <optgroup label="Asia">
-                <option value="7">Japan</option>
-                <option value="8">India</option>
-                <option value="9">China</option>
-                <option value="10">Indonesia</option>
-                <option value="11">Japan</option>
-                <option value="12">Malasia</option>
-              </optgroup>
-              <optgroup label="Australasia">
-                <option value="13">Australia</option>
-                <option value="14">New Zealand</option>
-                <option value="15">Papua New Guinea</option>
-              </optgroup>
-              <optgroup label="Europe">
-                <option value="13">Germany</option>
-                <option value="14">France</option>
-                <option value="15">Italy</option>
-                <option value="16">Spain</option>
-                <option value="17">United Kingdom</option>
-                <option value="18">Croatia</option>
-                <option value="19">Switzerland</option>
-                <option value="20">Belguim</option>
-              </optgroup>
-              <optgroup label="North America">
-                <option value="21">United States of America</option>
-                <option value="22">Canada</option>
-                <option value="23">Mexico</option>
-                <option value="24">Cuba</option>
-                <option value="25">Jamaica</option>
-              </optgroup>
-              <optgroup label="South America">
-                <option value="26">Brazil</option>
-                <option value="27">Argentina</option>
-                <option value="28">Peru</option>
-                <option value="29">Chile</option>
-              </optgroup>
-            </select>
-          </p>
-          <p>
-            <label>City</label><br>
-            <input type="text" name="City" list="Cities" >
-            <datalist id="Cities">
-              <option>Cape Town</option>
-              <option>Johannesburg</option>
-              <option></option>
-            </datalist>
-          </p>
+            <tr>
+              <td>
+                <p>
+                  <label>Rate this Photo:</label><br>
+                  <input type="number" name="rate" min="1" max="5" value="">
+                </p>
 
-          <p id="background">
-              <label>I accept the Software License</label>
-                <input type="checkbox" name="accept"></input>
-          </p>
+                <p>
+                  <label>Colour Collection:</label><br>
+                  <input type="color" name="color"></input>
+                </p>
+              </td>
 
-          <article class="dateAndTime">
-            <label>Date Taken:</label><br>
-            <input type="date" name="what"><br>
-            <label>Time Taken</label><br>
-            <input type="time" name="what">
-          </article>
+              <td>
+                <article class="dateAndTime">
+                  <label>Date Taken:</label><br>
+                  <input type="date" name="date"><br>
+                  <label>Time Taken</label><br>
+                  <input type="time" name="time">
+                </article>
+              </td>
+            </tr>
 
-          <p>
-            <label>Rate this Photo:</label><br>
-            <input type="number" name="what" min="1" max="5" value="">
-          </p>
+            <tr>
+              <td colspan="2">
+                <p id="Buttons">
+                  <input type="submit" name="" value="Submit">
+                  <input type="reset" name="" value="Clear Form"></input>
+                </p>
+              </td>
+            </tr>
 
-          <p>
-            <label>Colour Collection:</label><br>
-            <input type="color" name="what"></input>
-          </p>
-
-          <p id="Buttons">
-            <input type="submit" name="" value="Submit">
-            <input type="reset" name="" value="Clear Form"></input>
-          </p>
-
+          </table>
         </fieldset>
       </form>
     </section>
