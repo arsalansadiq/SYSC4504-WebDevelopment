@@ -2,67 +2,75 @@
 @import url(https://fonts.googleapis.com/css?family=Lobster);
 
 /* general text formatting */
-
 h1, h2, h3, nav, footer {
- font-family: Lobster, Cambria, "Times New Roman", serif;
-}
-body {
-   font-family: "Open Sans", Verdana, Arial, sans-serif;
-   font-size: 100%;
-   background-color: #E8EAF6;
+  font-family: Lobster, Cambria, "Times New Roman", serif;
 }
 
+body {
+  font-family: "Open Sans", Verdana, Arial, sans-serif;
+  font-size: 100%;
+  background-color: #E8EAF6;
+}
 
 /* header and navigation */
-
 header, footer {
   color: white;
   background-color: #1A237E;
   /* margin: 0em 4em 0.25em 4em; */
   width: 100%;
-  height: 100%
+  height: 100%;
+  margin-bottom: 10px;
 }
+
 header h1 {
   padding: 0.5rem 0 0 1.25rem;
   font-size: 2rem;
   font-weight: bold;
 }
-header p {
+
+/* header p {
   font-size: 1rem;
   font-style: italic;
   margin-bottom: 1rem;
   padding: 0 0 0 1.25rem;
-}
-
-
+} */
 /* main article styling */
-main {
+/* main {
    background-color: white;
    /* margin: 1em 4em 1em 4em;
    padding-left: 1em; */
 }
 
-section {
-   /* margin-bottom: 1em;
+*/ section {
+  /* margin-bottom: 1em;
    padding: 0;
    width: 100%; */
 }
 
-figure{
-  margin: 0;
-  padding: 0;
+figure {
+  background-color: white;
+  /* margin: 10px 20px 30px 40px; */
+  /* margin: 0px; */
+  margin-top: 10px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+
+
+  /* padding: 25px 50px 75px 100px; */
+
+  padding-top: 4px;
+  padding-right: 0px;
+  padding-bottom: 1px;
+  padding-left: 5px;
 }
 
-#smallImage{
- width: 125px;
- margin: 0;
- padding: 0;
-
+#small1,#small2, #small3, #small4,#small5 {
+  width: 121px;
+  margin: 0.1px;
+  padding: 0.5px;
 }
 
-img.highlighted {
-    border: 2px solid blue;
-}
 
 legend {
   font-size: 1.35rem;
@@ -70,18 +78,19 @@ legend {
   height: 1.70rem;
   color: #E8EAF6;
   text-transform: uppercase;
-    width: 100%;
-    margin: 0;
-    padding: 5px 0;
+  width: 100%;
+  margin: 0;
+  padding: 5px 0;
 }
 
 fieldset {
-   margin: 0;
-   padding: 0;
-   background-color: #C5CAE9;
-   width: 100%;
-   border: none;
+  margin: 0;
+  padding: 0;
+  background-color: #C5CAE9;
+  width: 100%;
+  border: none;
 }
+
 form p {
-   margin-top: 0.5em;
+  margin-top: 0.5em;
 }
