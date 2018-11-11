@@ -53,6 +53,17 @@ figure{
   padding: 0;
 }
 
+#smallImage{
+ width: 125px;
+ margin: 0;
+ padding: 0;
+
+}
+
+img.highlighted {
+    border: 2px solid blue;
+}
+
 legend {
   font-size: 1.35rem;
   background-color: #7986CB;
