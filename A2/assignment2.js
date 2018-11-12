@@ -25,3 +25,20 @@
 //     // Highlight the newly selected image
 //     $(this).addClass('highlighted');
 // });
+
+String.prototype.filename=function(extension){
+    var s= this.replace(/\\/g, '/');
+    s= s.substring(s.lastIndexOf('/')+ 1);
+    return extension? s.replace(/[?#].+$/, ''): s.split('.')[0];
+}
+
+$(window).load(function() {
+
+    $('body').on('click','img',function(){
+        var imgsrc=$(this).attr('src').filename();
+        imgsrc = imgsrc+'.jpg';
+
+        alert(imgsrc);
+});
+    // alert("window load occurred!");
+});
