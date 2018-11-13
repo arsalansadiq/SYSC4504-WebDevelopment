@@ -29,12 +29,12 @@ header h1 {
   display: inline;
 }
 
-.text-block {
+.overlayDiv {
   position: absolute;
   bottom: 7px;
   Right:8px;
   background-color: white;
-  opacity: 0.77;
+  opacity: 0.75;
   color: black;
   padding-left: 20px;
   padding-right: 20px;
@@ -46,7 +46,7 @@ header h1 {
 
 }
 
-.container {
+.largeOverlay {
   position: relative;
 }
 
