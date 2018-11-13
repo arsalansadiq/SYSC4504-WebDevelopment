@@ -41,6 +41,11 @@ $(window).load(function() {
         // alert(imgsrc);
        var imagefolder = "images/medium/"+imgsrc ; 
         $("img[id*=big]").attr('src', imagefolder);
+        imageTitle = $(this).attr('title');
+
+        $("img[id*=big]").attr('title', imageTitle);
+        $("img[id*=big]").next('figcaption').text(imageTitle);
+        // alert(imageTitle);
 });
     // alert("window load occurred!");
 });

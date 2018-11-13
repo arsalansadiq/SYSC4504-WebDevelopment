@@ -26,25 +26,12 @@ header h1 {
   padding: 0.5rem 0 0 1.25rem;
   font-size: 2rem;
   font-weight: bold;
+  display: inline;
 }
 
-/* header p {
-  font-size: 1rem;
-  font-style: italic;
-  margin-bottom: 1rem;
-  padding: 0 0 0 1.25rem;
-} */
-/* main article styling */
-/* main {
-   background-color: white;
-   /* margin: 1em 4em 1em 4em;
-   padding-left: 1em; */
-}
-
-*/ section {
-  /* margin-bottom: 1em;
-   padding: 0;
-   width: 100%; */
+header img {
+  padding: 10px;
+ float: right; 
 }
 
 figure {
@@ -69,6 +56,10 @@ figure {
   width: 121px;
   margin: 0.1px;
   padding: 0.5px;
+}
+
+figcaption { 
+    display: none;
 }
 
 
