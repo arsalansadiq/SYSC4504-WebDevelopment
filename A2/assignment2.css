@@ -2,7 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lobster);
 
 /* general text formatting */
-h1, h2, h3, nav, footer {
+h1 {
   font-family: Lobster, Cambria, "Times New Roman", serif;
 }
 
@@ -31,15 +31,18 @@ header h1 {
 
 .text-block {
   position: absolute;
-  bottom: 5px;
+  bottom: 7px;
   Right:8px;
   background-color: white;
   opacity: 0.77;
   color: black;
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 10px;
   width:91.8%;
-  visibility: hidden;
+  height:20% ;
+  text-align: center;
+  visibility: visible;
   
 }
 
