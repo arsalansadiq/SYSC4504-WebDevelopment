@@ -12,20 +12,18 @@ $(window).load(function () {
 
         // alert(imgsrc);
         $imagefolder = "images/medium/" + $imgsrc;
+        
         $("img[id*=big]").attr('src', $imagefolder);
-        $imageTitle = $(this).attr('title');
 
+        $imageTitle = $(this).attr('title');
         $("img[id*=big]").attr('title', $imageTitle);
         $("img[id*=big]").next('figcaption').text($imageTitle);
         // alert(imageTitle);
     });
-    // alert("window load occurred!");
 
     //mouseover and mouseout stuff
-    $("img[id*=big]").mouseover(function () {
-        $imageTitle = $("img[id*=big]").attr('title');
-        $newtitle = $('.text-block').text().replace($imageTitle);
-        // alert($newtitle);
+    $("img[id*=big],.text-block").mouseover(function () {
+        $('h2').text($("img[id*=big]").attr('title'));
          $('.text-block').show();
     }).mouseout(function () {
         $('.text-block').hide();
