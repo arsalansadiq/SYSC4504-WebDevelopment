@@ -58,15 +58,10 @@ header img {
 
 figure {
   background-color: white;
-  /* margin: 10px 20px 30px 40px; */
-  /* margin: 0px; */
   margin-top: 10px;
   margin-right: 0px;
   margin-bottom: 0px;
   margin-left: 0px;
-
-
-  /* padding: 25px 50px 75px 100px; */
 
   padding-top: 4px;
   padding-right: 0px;
@@ -82,28 +77,4 @@ figure {
 
 figcaption {
     display: none;
-}
-
-
-legend {
-  font-size: 1.35rem;
-  background-color: #7986CB;
-  height: 1.70rem;
-  color: #E8EAF6;
-  text-transform: uppercase;
-  width: 100%;
-  margin: 0;
-  padding: 5px 0;
-}
-
-fieldset {
-  margin: 0;
-  padding: 0;
-  background-color: #C5CAE9;
-  width: 100%;
-  border: none;
-}
-
-form p {
-  margin-top: 0.5em;
 }
