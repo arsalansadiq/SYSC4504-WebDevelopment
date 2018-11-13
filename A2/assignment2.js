@@ -22,9 +22,9 @@ $(window).load(function() {
     // alert("window load occurred!");
 
     //mouseover and mouseout stuff
-    // $('.wrap').mouseover(function () {
-    //     $('.company-image-overlay').show();
-    // }).mouseout(function () {
-    //     $('.company-image-overlay').hide();
-    // });
+    $("img[id*=big]").mouseover(function () {
+        $('.textblock').show();
+    }).mouseout(function () {
+        $('.textblock').hide();
+    });
 });

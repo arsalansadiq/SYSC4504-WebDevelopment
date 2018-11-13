@@ -31,14 +31,15 @@ header h1 {
 
 .text-block {
   position: absolute;
-  bottom: 21px;
-  Right:41px;
+  bottom: 5px;
+  Right:8px;
   background-color: white;
-  opacity: 0.5;
+  opacity: 0.77;
   color: black;
   padding-left: 20px;
   padding-right: 20px;
-  width:81%;
+  width:91.8%;
+  visibility: hidden;
   
 }
 
