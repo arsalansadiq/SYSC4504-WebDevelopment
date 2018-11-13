@@ -34,11 +34,13 @@ String.prototype.filename=function(extension){
 
 $(window).load(function() {
 
-    $('body').on('click','img',function(){
+    $("img[id^='small']").on('click',function(){
         var imgsrc=$(this).attr('src').filename();
         imgsrc = imgsrc+'.jpg';
 
-        alert(imgsrc);
+        // alert(imgsrc);
+       var imagefolder = "images/medium/"+imgsrc ; 
+        $("img[id*=big]").attr('src', imagefolder);
 });
     // alert("window load occurred!");
 });
