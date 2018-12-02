@@ -18,6 +18,7 @@ if($FirstName==null){
   $fullName = $FirstName .' '. $LastName;
 }
 $fullName;
+$ArtWorkID = $row['ArtWorkID'];
  ?> </h3>
 
 <div class="row">
@@ -32,7 +33,7 @@ $fullName;
          <div class="thumbnail">
             <img src="images/art/works/square-medium/'.$filename.'.jpg" title="" alt="" class="img-thumbnail img-responsive">
             <div class="caption">
-               <a class="btn btn-primary btn-xs" href="#"><span class="glyphicon glyphicon-info-sign"></span> View</a>
+               <a class="btn btn-primary btn-xs" href="display-art-work.php?id='.$ArtWorkID.'"><span class="glyphicon glyphicon-info-sign"></span> View</a>
                <button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-gift"></span> Wish</button>
                <button type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button>
             </div>

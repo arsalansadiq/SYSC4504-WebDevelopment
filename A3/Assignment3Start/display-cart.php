@@ -9,7 +9,7 @@
    <link href="bootstrap3_defaultTheme/dist/css/bootstrap.css" rel="stylesheet">
 
    <!-- Custom styles for this template -->
-   <link href="chapter08-project02.css" rel="stylesheet">
+   <link href="display-cart.css" rel="stylesheet">
 
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
    <!--[if lt IE 9]>

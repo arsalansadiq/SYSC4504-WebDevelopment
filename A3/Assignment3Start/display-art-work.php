@@ -2,6 +2,48 @@
 
 
 $page = $_SERVER['PHP_SELF'];
+require_once('config.php');
+
+//setup the sql fann_get_total_connections
+$connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+if ( mysqli_connect_errno() ) {
+  die( mysqli_connect_error() );
+}
+//"select * from artworks NATURAL JOIN where ArtWorkID=". $_GET['id'];
+$sql = "select * from artworks where ArtWorkID=". $_GET['id'];
+if ($result = mysqli_query($connection, $sql)) {
+  // loop through the data
+  while($row = mysqli_fetch_assoc($result))
+  {
+    $Title = $row['Title'];
+    $Description = $row['Description'];
+    $Price = $row['MSRP'];
+    $Date = $row['YearOfWork'];
+    $Medium = $row['Medium'];
+    $Home = $row['OriginalHome'];
+    $height = $row['Height'];
+    $width = $row['Width'];
+    $ImageFile= $row['ImageFileName'];
+
+    if($height==null && $width!=null){
+      $dimensions = $width.' X ?';
+    }elseif ($width==null && $height!=null) {
+      $dimensions = '? X '.$height;
+    }elseif ($width==null && $height==null) {
+      $dimensions= '? X ?';
+    }else {
+      $dimensions = $width.' X '.$height;
+    }
+
+
+
+  }
+  // release the memory used by the result set
+  mysqli_free_result($result);
+
+}
+mysqli_close($connection);
+
 
 ?>
 
@@ -12,8 +54,8 @@ $page = $_SERVER['PHP_SELF'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 3</title>
 
-    <!-- Bootstrap core CSS  -->    
-    <link href="bootstrap3_defaultTheme/dist/css/bootstrap.css" rel="stylesheet"> 
+    <!-- Bootstrap core CSS  -->
+    <link href="bootstrap3_defaultTheme/dist/css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="bootstrap3_defaultTheme/theme.css" rel="stylesheet">
 
@@ -27,74 +69,76 @@ $page = $_SERVER['PHP_SELF'];
    <div class="row">
 
       <div class="col-md-10">
-         <h2>title here</h2>
+         <h2><?php echo $Title; ?></h2>
          <p>By <a href="display-artist.php?id="></a></p>
          <div class="row">
             <div class="col-md-5">
-               <img src="images/art/works/medium/file-here.jpg" class="img-thumbnail img-responsive" alt="title here"/>
+               <img src=<?php echo 'images/art/works/medium/'.$ImageFile.'.jpg' ?> class="img-thumbnail img-responsive" alt="title here"/>
             </div>
             <div class="col-md-7">
                <p>
-                description herer
+                <?php echo $Description ?>
                </p>
-               <p class="price">$price</p>
+               <p class="price"><?php echo $Price; ?></p>
                <div class="btn-group btn-group-lg">
                  <button type="button" class="btn btn-default">
-                     <a href="#"><span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>  
+                     <a href="#"><span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>
                  </button>
                  <button type="button" class="btn btn-default">
                   <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
                  </button>
-               </div>               
+               </div>
                <p>&nbsp;</p>
                <div class="panel panel-default">
                  <div class="panel-heading"><h4>Product Details</h4></div>
                  <table class="table">
                    <tr>
                      <th>Date:</th>
-                     <td></td>
+                     <td><?php echo $Date ?></td>
                    </tr>
                    <tr>
                      <th>Medium:</th>
-                     <td></td>
-                   </tr>  
+                     <td><?php echo $Medium ?></td>
+                   </tr>
                    <tr>
                      <th>Dimensions:</th>
-                     <td>? cm X ? cm</td>
-                   </tr> 
+                     <td><?php echo $dimensions ?></td>
+                   </tr>
                    <tr>
                      <th>Home:</th>
-                     <td><a href="#"></a></td>
-                   </tr>  
+                     <td>
+                       <?php echo '<a href="#">'.$Home.'</a>'; ?>
+                       </td>
+                   </tr>
                    <tr>
                      <th>Genres:</th>
                      <td>
 
                      </td>
-                   </tr> 
+                   </tr>
                    <tr>
                      <th>Subjects:</th>
                      <td>
-                   
+
                      </td>
-                   </tr>     
+                   </tr>
                  </table>
-               </div>                              
-               
+               </div>
+
             </div>  <!-- end col-md-7 -->
          </div>  <!-- end row (product info) -->
 
- 
+
          <?php include 'includes/art-artist-works.inc.php'; ?>
-                     
+
       </div>  <!-- end col-md-10 (main content) -->
-      
-      <div class="col-md-2">   
+
+      <div class="col-md-2">
          <?php include 'includes/art-shopping-cart.inc.php'; ?>
-      
+
          <?php include 'includes/art-right-nav.inc.php'; ?>
-      </div> <!-- end col-md-2 (right navigation) -->           
-   </div>  <!-- end main row --> 
+      </div> <!-- end col-md-2 (right navigation) -->
+   </div>  <!-- end main row -->
 </div>  <!-- end container -->
 
 <?php include 'includes/art-footer.inc.php'; ?>
@@ -104,6 +148,6 @@ $page = $_SERVER['PHP_SELF'];
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bootstrap-3.0.0/assets/js/jquery.js"></script>
-    <script src="bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>    
+    <script src="bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
