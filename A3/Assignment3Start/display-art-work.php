@@ -147,7 +147,7 @@ mysqli_close($connection);
             <p>
               <?php echo $Description ?>
             </p>
-            <p class="price"><?php echo $Price; ?></p>
+            <p class="price">$<?php echo number_format($Price,2); ?></p>
             <div class="btn-group btn-group-lg">
               <button type="button" class="btn btn-default">
                 <a href="#"><span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>
