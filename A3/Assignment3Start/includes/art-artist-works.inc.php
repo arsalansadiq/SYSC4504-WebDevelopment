@@ -18,7 +18,7 @@ if($FirstName==null){
   $fullName = $FirstName .' '. $LastName;
 }
 $fullName;
-$ArtWorkID = $row['ArtWorkID'];
+
  ?> </h3>
 
 <div class="row">
@@ -28,6 +28,7 @@ $ArtWorkID = $row['ArtWorkID'];
     while($row = mysqli_fetch_assoc($result))
     {
       $filename = $row['ImageFileName'];
+      $ArtWorkID = $row['ArtWorkID'];
 
       echo '<div class="col-md-3">
          <div class="thumbnail">

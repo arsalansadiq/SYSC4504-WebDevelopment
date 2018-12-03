@@ -20,12 +20,14 @@
 
 <body>
 
-<?php include 'includes/art-header-inc.php';
-include 'art-data.php';
-$subtotal;
+<?php include 'includes/art-header.inc.php'; ?>
+
+<?php
+// include 'art-data.php';
+$subtotal=0;
 $tax = 0.1;
 
-$grandtotal;
+$grandtotal=0;
 
 function outputCartRow($file, $product, $quantity, $price) {
 
@@ -40,7 +42,7 @@ function outputCartRow($file, $product, $quantity, $price) {
   global $tax;
   $grandtotal = $subtotal + ($subtotal*$tax);
 }
-?>
+?> -->
 
 
 <div class="container">
@@ -59,12 +61,12 @@ function outputCartRow($file, $product, $quantity, $price) {
          </tr>
          <tr>
 
-           <?php outputCartRow($file1, $product1, $quantity1, $price1); ?>
+           <!-- <?php outputCartRow($file1, $product1, $quantity1, $price1); ?> -->
 
          </tr>
          <tr>
 
-           <?php outputCartRow($file2, $product2, $quantity2, $price2); ?>
+           <!-- <?php outputCartRow($file2, $product2, $quantity2, $price2); ?> -->
 
 
          </tr>
@@ -82,12 +84,12 @@ function outputCartRow($file, $product, $quantity, $price) {
          </tr>
          <tr class="strong">
            <?php
-           $shipping = 100;
+           $shipping = 0;
            if($subtotal>2000){
-             $shipping=0;
+             $shipping=100;
            }
            echo '<td colspan="4" class="moveRight">Shipping</td>';
-           echo '<td>'.$shipping.'</td>' ?>;
+           echo '<td>'.$shipping.'</td>'; ?>
 
          </tr>
          <tr class="warning strong text-danger">
@@ -95,7 +97,6 @@ function outputCartRow($file, $product, $quantity, $price) {
            echo '<td colspan="4" class="moveRight">Grand Total</td>';
            echo '<td>'.number_format($grandtotal,2).'</td>';
             ?>
-
          </tr>
          <tr >
             <td colspan="4" class="moveRight"><button type="button" class="btn btn-primary" >Continue Shopping</button></td>
@@ -105,7 +106,7 @@ function outputCartRow($file, $product, $quantity, $price) {
 
 </div>  <!-- end container -->
 
-<?php include 'includes/art-footer-inc.php'; ?>
+<?php include 'includes/art-footer.inc.php'; ?>
 
 
 
