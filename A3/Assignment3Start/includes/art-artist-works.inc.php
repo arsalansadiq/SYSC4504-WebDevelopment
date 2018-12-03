@@ -9,17 +9,7 @@ $sql = "select * from artists NATURAL JOIN artworks where ArtistID=". $_GET['id'
 
 ?>
 
-<h3>Art by <?php
-$FirstName = $row['FirstName'];
-$LastName = $row['LastName'];
-if($FirstName==null){
-  $fullName = $LastName;
-}else{
-  $fullName = $FirstName .' '. $LastName;
-}
-$fullName;
-
- ?> </h3>
+<h3>Art by <?php echo $fullName;?> </h3>
 
 <div class="row">
   <?php
@@ -29,7 +19,14 @@ $fullName;
     {
       $filename = $row['ImageFileName'];
       $ArtWorkID = $row['ArtWorkID'];
-
+      $FirstName = $row['FirstName'];
+      $LastName = $row['LastName'];
+      global $fullName;
+      if($FirstName==null){
+        $fullName = $LastName;
+      }else{
+        $fullName = $FirstName .' '. $LastName;
+      }
       echo '<div class="col-md-3">
          <div class="thumbnail">
             <img src="images/art/works/square-medium/'.$filename.'.jpg" title="" alt="" class="img-thumbnail img-responsive">
