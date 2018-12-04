@@ -17,31 +17,20 @@ $sql = "select * from artists NATURAL JOIN artworks where ArtistID=".$_GET['id']
     // loop through the data
     while($row = mysqli_fetch_assoc($result))
     {
-      $filename = $row['ImageFileName'];
-      $ArtWorkID = $row['ArtWorkID'];
-      $ArtistID = $row['ArtistID'];
-      // $FirstName = $row['FirstName'];
-      // $LastName = $row['LastName'];
-      // global $fullName;
-      // if($FirstName==null){
-      //   $fullName = $LastName;
-      // }else{
-      //   $fullName = $FirstName .' '. $LastName;
-      // }
-      echo '
+      ?>
       <div class="col-md-3">
          <div class="thumbnail">
-            <img src="images/art/works/square-medium/'.$filename.'.jpg" title="" alt="" class="img-thumbnail img-responsive">
+            <img src="images/art/works/square-medium/<?php echo $row['ImageFileName']?>.jpg" title="" alt="" class="img-thumbnail img-responsive">
             <div class="caption">
-               <a class="btn btn-primary btn-xs" href="display-art-work.php?id='.$ArtWorkID.'"><span class="glyphicon glyphicon-info-sign"></span> View</a>
+               <a class="btn btn-primary btn-xs" href=<?php echo "display-art-work.php?id=".$_GET['id']."&artID=".$row['ArtWorkID']?>><span class="glyphicon glyphicon-info-sign"></span> View</a>
                <button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-gift"></span> Wish</button>
                <button type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button>
             </div>
          </div>
       </div>
-  ';
+
+      <?php
     }
-    // release the memory used by the result set
     mysqli_free_result($result);
 
   }

@@ -1,8 +1,10 @@
 <?php
 
-if (!ISSET($_GET['id'])) {
+if (!ISSET($_GET['id']) and !ISSET($_GET['artID'])) {
   // code...
-  $_GET['id'] =424;
+$_GET['id'] =106;
+$_GET['artID']=424;
+
 }
 $page = $_SERVER['PHP_SELF'];
 require_once('config.php');
@@ -13,7 +15,7 @@ if ( mysqli_connect_errno() ) {
   die( mysqli_connect_error() );
 }
 //"select * from artworks NATURAL JOIN where ArtWorkID=". $_GET['id'];
-$sql = "select * from artists NATURAL JOIN artworks where ArtWorkID=". $_GET['id'];
+$sql = "select * from artists NATURAL JOIN artworks where ArtWorkID='". $_GET['artID']."'";
 // $sql .= "select * from artworks INNER JOIN artworkgenres ON artworkgenre.ArtWorkID=artworks.ArtWorkID INNER JOIN genres ON genres.GenreID=artworkgenres.GenreID and artworks.ArtWorkID=". $_GET['id'];
 //
 //
@@ -79,13 +81,13 @@ if ($result = mysqli_query($connection, $sql)) {
     $ImageFile= $row['ImageFileName'];
 
     if($height==null && $width!=null){
-      $dimensions = $width.' X ?';
+      $dimensions = $width.'cm X ?';
     }elseif ($width==null && $height!=null) {
-      $dimensions = '? X '.$height;
+      $dimensions = '? X '.$height.'cm';
     }elseif ($width==null && $height==null) {
       $dimensions= '? X ?';
     }else {
-      $dimensions = $width.' X '.$height;
+      $dimensions = $width.'cm X '.$height.'cm';
     }
 
     $FirstName = $row['FirstName'];
@@ -103,14 +105,23 @@ if ($result = mysqli_query($connection, $sql)) {
 
 }
 
+$sql1 = "select * from genres NATURAL JOIN artworkgenres where ArtWorkID='". $_GET['artID']."'";
+if ($result1 = mysqli_query($connection, $sql1)) {
+  while($row1 = mysqli_fetch_assoc($result1))
+  {
 
-// if ($result = mysqli_query($connection, $sql1)) {
-//   while($row = mysqli_fetch_assoc($result))
-//   {
-//     global $GenreName;
-//     $GenreName = $row['GenreName'];
-//   }
-// }
+    $GenreName = $row1['GenreName'];
+  }
+}
+
+$sql2 = "select * from subjects NATURAL JOIN artworksubjects where ArtWorkID='". $_GET['artID']."'";
+if ($result2 = mysqli_query($connection, $sql2)) {
+  while($row2 = mysqli_fetch_assoc($result2))
+  {
+
+    $SubjectName = $row2['SubjectName'];
+  }
+}
 
 
 mysqli_close($connection);
@@ -178,7 +189,7 @@ mysqli_close($connection);
                 <tr>
                   <th>Home:</th>
                   <td>
-                    <?php echo '<a href="#">'.$Home.'</a>'; ?>
+                    <a href="#"><?php echo $Home; ?></a>
                   </td>
                 </tr>
                 <tr>
@@ -189,7 +200,7 @@ mysqli_close($connection);
                 <tr>
                   <th>Subjects:</th>
                   <td>
-
+                    <?php echo $SubjectName; ?>
                   </td>
                 </tr>
               </table>
