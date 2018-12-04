@@ -1,8 +1,12 @@
 <?php
 
-
+if (!ISSET($_GET['id'])) {
+  // code...
+  $_GET['id'] =99;
+}
 $page = $_SERVER['PHP_SELF'];
 require_once('config.php');
+
 
 //setup the sql fann_get_total_connections
 $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);

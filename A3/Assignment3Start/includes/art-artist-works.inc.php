@@ -5,7 +5,7 @@ if ( mysqli_connect_errno() ) {
   die( mysqli_connect_error() );
 }
 
-$sql = "select * from artists NATURAL JOIN artworks where ArtistID=". $_GET['id'];
+$sql = "select * from artists NATURAL JOIN artworks where ArtistID=".$_GET['id'];
 
 ?>
 
@@ -19,7 +19,7 @@ $sql = "select * from artists NATURAL JOIN artworks where ArtistID=". $_GET['id'
     {
       $filename = $row['ImageFileName'];
       $ArtWorkID = $row['ArtWorkID'];
-
+      $ArtistID = $row['ArtistID'];
       // $FirstName = $row['FirstName'];
       // $LastName = $row['LastName'];
       // global $fullName;

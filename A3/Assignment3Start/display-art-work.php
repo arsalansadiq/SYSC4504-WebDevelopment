@@ -1,6 +1,9 @@
 <?php
 
-
+if (!ISSET($_GET['id'])) {
+  // code...
+  $_GET['id'] =424;
+}
 $page = $_SERVER['PHP_SELF'];
 require_once('config.php');
 
@@ -10,7 +13,7 @@ if ( mysqli_connect_errno() ) {
   die( mysqli_connect_error() );
 }
 //"select * from artworks NATURAL JOIN where ArtWorkID=". $_GET['id'];
-$sql = "select * from artists NATURAL JOIN artworks where ArtistID= artworks.ArtistID AND ArtWorkID=". $_GET['id'];
+$sql = "select * from artists NATURAL JOIN artworks where ArtWorkID=". $_GET['id'];
 // $sql .= "select * from artworks INNER JOIN artworkgenres ON artworkgenre.ArtWorkID=artworks.ArtWorkID INNER JOIN genres ON genres.GenreID=artworkgenres.GenreID and artworks.ArtWorkID=". $_GET['id'];
 //
 //
