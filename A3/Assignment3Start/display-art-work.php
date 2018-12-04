@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (!ISSET($_GET['id']) and !ISSET($_GET['artID'])) {
   // code...
@@ -16,55 +17,6 @@ if ( mysqli_connect_errno() ) {
 }
 //"select * from artworks NATURAL JOIN where ArtWorkID=". $_GET['id'];
 $sql = "select * from artists NATURAL JOIN artworks where ArtWorkID='". $_GET['artID']."'";
-// $sql .= "select * from artworks INNER JOIN artworkgenres ON artworkgenre.ArtWorkID=artworks.ArtWorkID INNER JOIN genres ON genres.GenreID=artworkgenres.GenreID and artworks.ArtWorkID=". $_GET['id'];
-//
-//
-// if (mysqli_multi_query($connection, $sql)) {
-//   do {
-//     /* store first result set */
-//     if ($result = mysqli_store_result($connection)) {
-//       while ($row = mysqli_fetch_array($result))
-//
-//       /* print your results */
-//       {
-//         $Title = $row['Title'];
-//         $Description = $row['Description'];
-//         $Price = $row['MSRP'];
-//         $Date = $row['YearOfWork'];
-//         $Medium = $row['Medium'];
-//         $Home = $row['OriginalHome'];
-//         $height = $row['Height'];
-//         $width = $row['Width'];
-//         $ImageFile= $row['ImageFileName'];
-//
-//         if($height==null && $width!=null){
-//           $dimensions = $width.' X ?';
-//         }elseif ($width==null && $height!=null) {
-//           $dimensions = '? X '.$height;
-//         }elseif ($width==null && $height==null) {
-//           $dimensions= '? X ?';
-//         }else {
-//           $dimensions = $width.' X '.$height;
-//         }
-//
-//         $FirstName = $row['FirstName'];
-//         $LastName = $row['LastName'];
-//         if($FirstName==null){
-//           $fullName = $LastName;
-//         }else{
-//           $fullName = $FirstName .' '. $LastName;
-//         }
-//         $fullName;
-//         $ArtistID = $row['ArtistID'];
-//         $GenreName = $row['GenreName'];
-//       }
-//       mysqli_free_result($result);
-//     }
-//   } while (mysqli_next_result($connection));
-// }
-
-
-
 
 if ($result = mysqli_query($connection, $sql)) {
   // loop through the data
@@ -112,6 +64,7 @@ if ($result1 = mysqli_query($connection, $sql1)) {
 
     $GenreName = $row1['GenreName'];
   }
+  mysqli_free_result($result1);
 }
 
 $sql2 = "select * from subjects NATURAL JOIN artworksubjects where ArtWorkID='". $_GET['artID']."'";
@@ -121,6 +74,7 @@ if ($result2 = mysqli_query($connection, $sql2)) {
 
     $SubjectName = $row2['SubjectName'];
   }
+  mysqli_free_result($result2);
 }
 
 
@@ -167,7 +121,7 @@ mysqli_close($connection);
                 <a href="#"><span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>
               </button>
               <button type="button" class="btn btn-default">
-                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
+                <a href="display-cart.php?action=addToCart&artID=<?php echo $_GET['artID']; ?>"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
               </button>
             </div>
             <p>&nbsp;</p>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (!ISSET($_GET['id'])) {
   // code...
