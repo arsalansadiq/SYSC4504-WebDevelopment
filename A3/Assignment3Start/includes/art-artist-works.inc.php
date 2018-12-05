@@ -19,14 +19,14 @@ $sql = "select * from artists NATURAL JOIN artworks where ArtistID=".$_GET['id']
     {
       ?>
       <div class="col-md-3">
-         <div class="thumbnail">
-            <img src="images/art/works/square-medium/<?php echo $row['ImageFileName']?>.jpg" title="" alt="" class="img-thumbnail img-responsive">
-            <div class="caption">
-               <a class="btn btn-primary btn-xs" href=<?php echo "display-art-work.php?id=".$_GET['id']."&artID=".$row['ArtWorkID']?>><span class="glyphicon glyphicon-info-sign"></span> View</a>
-               <button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-gift"></span> Wish</button>
-               <button type="button" class="btn btn-info btn-xs" onClick="window.location.href='<?php echo "display-cart.php?artID=".$row['ArtWorkID']." "; ?>';"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button>
-            </div>
-         </div>
+        <div class="thumbnail">
+          <img src="images/art/works/square-medium/<?php echo $row['ImageFileName']?>.jpg" title="" alt="" class="img-thumbnail img-responsive">
+          <div class="caption">
+            <a class="btn btn-primary btn-xs" href=<?php echo "display-art-work.php?id=".$_GET['id']."&artID=".$row['ArtWorkID']?>><span class="glyphicon glyphicon-info-sign"></span> View</a>
+            <button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-gift"></span> Wish</button>
+            <button type="button" class="btn btn-info btn-xs" onClick="window.location.href='<?php echo "display-cart.php?artID=".$row['ArtWorkID']." "; ?>';"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button>
+          </div>
+        </div>
       </div>
 
       <?php

@@ -3,8 +3,8 @@ session_start();
 
 if (!ISSET($_GET['id']) and !ISSET($_GET['artID'])) {
   // code...
-$_GET['id'] =106;
-$_GET['artID']=424;
+  $_GET['id'] =106;
+  $_GET['artID']=424;
 
 }
 $page = $_SERVER['PHP_SELF'];
@@ -158,7 +158,7 @@ mysqli_close($connection);
                 <tr>
                   <th>Subjects:</th>
                   <td>
-                    <?php echo $SubjectName; ?>
+                    <a href="#"><?php echo $SubjectName; ?></a>
                   </td>
                 </tr>
               </table>
