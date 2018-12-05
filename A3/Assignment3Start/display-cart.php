@@ -1,3 +1,60 @@
+<?php
+session_start();
+
+if (!ISSET($_SESSION['cart'])) {
+  // code...
+$_SESSION['cart']=array(); // Declaring session array
+
+}
+
+if (ISSET($_GET['artID'])) {
+  $artID = $_GET['artID'];
+  if (array_key_exists($artID,$_SESSION['cart'])) {
+    $_SESSION['cart'][$artID]['Quantity']++;
+  }else {
+    $_SESSION['cart'][$artID] = array('artID' => $artID, 'Quantity' => 1);
+  }
+}
+
+if (ISSET($_GET['action']) and !ISSET($_GET['artID'])) {
+      $_SESSION['cart']=array(); // Declaring session array
+  }
+
+
+function artworkDetail(){
+foreach ($_SESSION['cart'] as $value) {
+  // code...
+
+require_once('config.php');
+$connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+if ( mysqli_connect_errno() ) {
+  die( mysqli_connect_error() );
+}
+
+$sql = "select * from artworks where ArtWorkID=". $value['artID'];
+if ($result = mysqli_query($connection, $sql)) {
+  // loop through the data
+  while($row = mysqli_fetch_assoc($result))
+  {
+
+    $ImageFile = $row['ImageFileName'];
+    $Title= $row['Title'];
+    $Price = $row['MSRP'];
+
+ outputCartRow($ImageFile, $Title, $value['Quantity'], $Price);
+  }
+  // release the memory used by the result set
+  mysqli_free_result($result);
+
+}
+
+
+mysqli_close($connection);
+}
+}
+
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,23 +83,24 @@
 // include 'art-data.php';
 $subtotal=0;
 $tax = 0.1;
-
 $grandtotal=0;
 
 function outputCartRow($file, $product, $quantity, $price) {
 
-  echo '<td><img class="img-thumbnail" src="images/art/tiny/' . $file.'"' . 'alt="..."></td>';
+  echo '<tr>';
+  echo '<td><img class="img-thumbnail" src="images/art/works/square-thumbs/' . $file.'.jpg"' . 'alt="..."></td>';
   echo '<td>'.$product."</td>";
   echo "<td>".$quantity."</td>";
-  echo "<td>".$price."</td>";
-  echo "<td>".($quantity*$price)."</td>";
+  echo "<td>$".number_format($price,2)."</td>";
+  echo "<td>$".($quantity*$price)."</td>";
+  echo '</tr>';
   global $subtotal;
   $subtotal += ($quantity*$price);
   global $grandtotal;
   global $tax;
   $grandtotal = $subtotal + ($subtotal*$tax);
 }
-?> -->
+?>
 
 
 <div class="container">
@@ -59,48 +117,43 @@ function outputCartRow($file, $product, $quantity, $price) {
             <th>Price</th>
             <th>Amount</th>
          </tr>
-         <tr>
 
-           <!-- <?php outputCartRow($file1, $product1, $quantity1, $price1); ?> -->
-
-         </tr>
-         <tr>
-
-           <!-- <?php outputCartRow($file2, $product2, $quantity2, $price2); ?> -->
+          <?php artworkDetail(); ?>
 
 
-         </tr>
          <tr class="success strong">
            <?php
           echo '<td colspan="4" class="moveRight">Subtotal</td>';
-          echo '<td >'.$subtotal.'</td>';
+          echo '<td >$'.$subtotal.'</td>';
             ?>
          </tr>
          <tr class="active strong">
            <?php
            echo '<td colspan="4" class="moveRight">Tax</td>';
-           echo '<td>'.$subtotal*$tax.'</td>';
+           echo '<td>$'.$subtotal*$tax.'</td>';
             ?>
          </tr>
          <tr class="strong">
            <?php
-           $shipping = 0;
-           if($subtotal>2000){
+
+           if($subtotal<2000){
              $shipping=100;
+           }else{
+             $shipping=0;
            }
            echo '<td colspan="4" class="moveRight">Shipping</td>';
-           echo '<td>'.$shipping.'</td>'; ?>
+           echo '<td>$'.$shipping.'</td>'; ?>
 
          </tr>
          <tr class="warning strong text-danger">
            <?php
            echo '<td colspan="4" class="moveRight">Grand Total</td>';
-           echo '<td>'.number_format($grandtotal,2).'</td>';
+           echo '<td>$'.number_format($grandtotal+$shipping,2).'</td>';
             ?>
          </tr>
          <tr >
             <td colspan="4" class="moveRight"><button type="button" class="btn btn-primary" >Continue Shopping</button></td>
-            <td><button type="button" class="btn btn-success" >Checkout</button></td>
+            <td><button type="button" class="btn btn-success" onclick='window.location.href="display-cart.php?action=destroyCart"' >Checkout</button></td>
          </tr>
       </table>
 

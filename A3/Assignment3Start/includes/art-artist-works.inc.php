@@ -24,7 +24,7 @@ $sql = "select * from artists NATURAL JOIN artworks where ArtistID=".$_GET['id']
             <div class="caption">
                <a class="btn btn-primary btn-xs" href=<?php echo "display-art-work.php?id=".$_GET['id']."&artID=".$row['ArtWorkID']?>><span class="glyphicon glyphicon-info-sign"></span> View</a>
                <button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-gift"></span> Wish</button>
-               <button type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button>
+               <button type="button" class="btn btn-info btn-xs" onClick="window.location.href='<?php echo "display-cart.php?artID=".$row['ArtWorkID']." "; ?>';"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button>
             </div>
          </div>
       </div>
@@ -36,7 +36,5 @@ $sql = "select * from artists NATURAL JOIN artworks where ArtistID=".$_GET['id']
   }
   mysqli_close($connection);
   ?>
-
-
 
 </div>  <!-- end artist's works row -->

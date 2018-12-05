@@ -31,15 +31,16 @@ if ($result = mysqli_query($connection, $sql)) {
     $height = $row['Height'];
     $width = $row['Width'];
     $ImageFile= $row['ImageFileName'];
+    $ArtworkID = $_GET['artID'];
 
     if($height==null && $width!=null){
-      $dimensions = $width.'cm X ?';
+      $dimensions = $width.' cm X ?';
     }elseif ($width==null && $height!=null) {
-      $dimensions = '? X '.$height.'cm';
+      $dimensions = '? X '.$height.' cm';
     }elseif ($width==null && $height==null) {
       $dimensions= '? X ?';
     }else {
-      $dimensions = $width.'cm X '.$height.'cm';
+      $dimensions = $width.' cm X '.$height.' cm';
     }
 
     $FirstName = $row['FirstName'];
@@ -63,6 +64,7 @@ if ($result1 = mysqli_query($connection, $sql1)) {
   {
 
     $GenreName = $row1['GenreName'];
+    $GenreLink = $row1['Link'];
   }
   mysqli_free_result($result1);
 }
@@ -120,8 +122,8 @@ mysqli_close($connection);
               <button type="button" class="btn btn-default">
                 <a href="#"><span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>
               </button>
-              <button type="button" class="btn btn-default">
-                <a href="display-cart.php?action=addToCart&artID=<?php echo $_GET['artID']; ?>"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
+              <button type="button" class="btn btn-default" onClick="window.location.href='<?php echo "display-cart.php?artID=".$ArtworkID." "; ?>';">
+                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
               </button>
             </div>
             <p>&nbsp;</p>
@@ -149,7 +151,9 @@ mysqli_close($connection);
                 <tr>
                   <th>Genres:</th>
 
-                  <td><?php echo $GenreName; ?></td>
+                  <td>
+                    <a href="<?php echo $GenreLink; ?>"><?php echo $GenreName; ?></a>
+                  </td>
                 </tr>
                 <tr>
                   <th>Subjects:</th>
