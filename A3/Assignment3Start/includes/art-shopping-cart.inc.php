@@ -21,7 +21,7 @@ if ($result = mysqli_query($connection, $sql)) {
     $Title= $row['Title'];
     $Price = $row['MSRP'];
 
- outputCartRow($ImageFile, $Title);
+ outputCartRow($ImageFile, $Title, $value['Quantity'], $Price);
   }
   // release the memory used by the result set
   mysqli_free_result($result);
@@ -32,8 +32,8 @@ if ($result = mysqli_query($connection, $sql)) {
 mysqli_close($connection);
 }
 }
-
-function outputCartRow($file, $product) {
+$subtotal=0;
+function outputCartRow($file, $product, $quantity, $price) {
 
   // echo '<tr>';
   // echo '<td><img class="img-thumbnail" src="images/art/works/square-thumbs/' . $file.'.jpg"' . 'alt="..."></td>';
@@ -46,7 +46,7 @@ function outputCartRow($file, $product) {
   ?>
   <div class="media">
     <a class="pull-left" href="#">
-      <img class="media-object" src="images/art/works/tiny/<?php echo $file; ?>.jpg" alt="..." width="32">
+      <img class="media-object" src="images/art/works/square-thumbs/<?php echo $file; ?>.jpg" alt="..." width="32">
     </a>
     <div class="media-body">
       <p class="cartText"><a href="display-art-work.php?id=443"><?php echo $product; ?></a></p>
@@ -54,7 +54,7 @@ function outputCartRow($file, $product) {
   </div>
   <?php
   global $subtotal;
-  //$subtotal += ($quantity*$price);
+  $subtotal += ($quantity*$price);
 
 }
 
@@ -70,7 +70,7 @@ function outputCartRow($file, $product) {
    </div>
    <div class="panel-body">
       <?php artworkDetail(); ?>
-      <strong class="cartText">Subtotal: <span class="text-warning">$1200</span></strong>
+      <strong class="cartText">Subtotal: <span class="text-warning"><?php echo $subtotal; ?></span></strong>
       <div>
       <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span> Edit</button>
       <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-arrow-right"></span> Checkout</button>

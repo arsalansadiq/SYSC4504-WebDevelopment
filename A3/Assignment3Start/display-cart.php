@@ -84,6 +84,7 @@ mysqli_close($connection);
 $subtotal=0;
 $tax = 0.1;
 $grandtotal=0;
+$shipping = 100;
 
 function outputCartRow($file, $product, $quantity, $price) {
 
@@ -97,8 +98,9 @@ function outputCartRow($file, $product, $quantity, $price) {
   global $subtotal;
   $subtotal += ($quantity*$price);
   global $grandtotal;
+  global $shipping;
   global $tax;
-  $grandtotal = $subtotal + ($subtotal*$tax);
+  $grandtotal = $subtotal + ($subtotal*$tax)+ $shipping;
 }
 ?>
 
@@ -136,9 +138,7 @@ function outputCartRow($file, $product, $quantity, $price) {
          <tr class="strong">
            <?php
 
-           if($subtotal<2000){
-             $shipping=100;
-           }else{
+           if($subtotal>2000){
              $shipping=0;
            }
            echo '<td colspan="4" class="moveRight">Shipping</td>';
@@ -148,7 +148,7 @@ function outputCartRow($file, $product, $quantity, $price) {
          <tr class="warning strong text-danger">
            <?php
            echo '<td colspan="4" class="moveRight">Grand Total</td>';
-           echo '<td>$'.number_format($grandtotal+$shipping,2).'</td>';
+           echo '<td>$'.number_format($grandtotal,2).'</td>';
             ?>
          </tr>
          <tr >
