@@ -5,23 +5,25 @@ if (!ISSET($_GET['id']) and !ISSET($_GET['artID'])) {
   // code...
   $_GET['id'] =106;
   $_GET['artID']=424;
-
+//check if the ID is being GET on the page and artID, and both are if not being set then send them., this is done to avoid
+//inital page laoding errors.
 }
 $page = $_SERVER['PHP_SELF'];
-require_once('config.php');
+require_once('config.php');//require the password
 
 //setup the sql fann_get_total_connections
 $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 if ( mysqli_connect_errno() ) {
   die( mysqli_connect_error() );
 }
-//"select * from artworks NATURAL JOIN where ArtWorkID=". $_GET['id'];
-$sql = "select * from artists NATURAL JOIN artworks where ArtWorkID='". $_GET['artID']."'";
+
+$sql = "select * from artists NATURAL JOIN artworks where ArtWorkID='". $_GET['artID']."'";//query to get the items
 
 if ($result = mysqli_query($connection, $sql)) {
   // loop through the data
   while($row = mysqli_fetch_assoc($result))
   {
+    //grabbing the relevent data values needed to fill the information on the page
     $Title = $row['Title'];
     $Description = $row['Description'];
     $Price = $row['MSRP'];
@@ -31,8 +33,9 @@ if ($result = mysqli_query($connection, $sql)) {
     $height = $row['Height'];
     $width = $row['Width'];
     $ImageFile= $row['ImageFileName'];
-    $ArtworkID = $_GET['artID'];
+    $ArtworkID = $_GET['artID'];//need to use that to go to next page
 
+    //height and width values are null in the table so a functionality not to include the null characters
     if($height==null && $width!=null){
       $dimensions = $width.' cm X ?';
     }elseif ($width==null && $height!=null) {
@@ -42,7 +45,7 @@ if ($result = mysqli_query($connection, $sql)) {
     }else {
       $dimensions = $width.' cm X '.$height.' cm';
     }
-
+//First and Last Name values are null in the table so a functionality not to include the null characters
     $FirstName = $row['FirstName'];
     $LastName = $row['LastName'];
     if($FirstName==null){
@@ -57,7 +60,7 @@ if ($result = mysqli_query($connection, $sql)) {
   mysqli_free_result($result);
 
 }
-
+//another Sql query to include the additional tables for genre
 $sql1 = "select * from genres NATURAL JOIN artworkgenres where ArtWorkID='". $_GET['artID']."'";
 if ($result1 = mysqli_query($connection, $sql1)) {
   while($row1 = mysqli_fetch_assoc($result1))
@@ -68,7 +71,7 @@ if ($result1 = mysqli_query($connection, $sql1)) {
   }
   mysqli_free_result($result1);
 }
-
+//another Sql query to include the additional tables for subject
 $sql2 = "select * from subjects NATURAL JOIN artworksubjects where ArtWorkID='". $_GET['artID']."'";
 if ($result2 = mysqli_query($connection, $sql2)) {
   while($row2 = mysqli_fetch_assoc($result2))
@@ -105,7 +108,7 @@ mysqli_close($connection);
 
   <div class="container">
     <div class="row">
-
+<!-- //included the the variables created above to display information -->
       <div class="col-md-10">
         <h2><?php echo $Title; ?></h2>
         <p>By <a href="display-artist.php?id=<?php echo $ArtistID; ?>"><?php echo $fullName; ?></a></p>
@@ -131,6 +134,7 @@ mysqli_close($connection);
               <div class="panel-heading"><h4>Product Details</h4></div>
               <table class="table">
                 <tr>
+                  <!-- //included the the variables created above to display information -->
                   <th>Date:</th>
                   <td><?php echo $Date ?></td>
                 </tr>

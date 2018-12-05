@@ -4,26 +4,29 @@ session_start();
 if (!ISSET($_SESSION['cart'])) {
   // code...
   $_SESSION['cart']=array(); // Declaring session array
-
+  //check if the cart is being set, and if are not being set then set it to a new empty array., this is done to avoid
+  //inital page laoding errors.
 }
 
 if (ISSET($_GET['artID'])) {
   $artID = $_GET['artID'];
-  if (array_key_exists($artID,$_SESSION['cart'])) {
-    $_SESSION['cart'][$artID]['Quantity']++;
+  if (!array_key_exists($artID,$_SESSION['cart'])) {
+
+    $_SESSION['cart'][$artID] = array('artID' => $artID, 'quantity' => 1);
   }else {
-    $_SESSION['cart'][$artID] = array('artID' => $artID, 'Quantity' => 1);
+      $_SESSION['cart'][$artID]['quantity']++;
   }
 }
 
 if (ISSET($_GET['action']) and !ISSET($_GET['artID'])) {
+  //whenever the checkout button is clicked make a new session array
   $_SESSION['cart']=array(); // Declaring session array
 }
 
 
 function artworkDetail(){
   foreach ($_SESSION['cart'] as $value) {
-    // code...
+    // loop through are the values of ID in the session array and for each of them run the sql query to display the cart row
 
     require_once('config.php');
     $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
@@ -41,7 +44,7 @@ function artworkDetail(){
         $Title= $row['Title'];
         $Price = $row['MSRP'];
 
-        outputCartRow($ImageFile, $Title, $value['Quantity'], $Price);
+        outputCartRow($ImageFile, $Title, $value['quantity'], $Price);//output the cart row
       }
       // release the memory used by the result set
       mysqli_free_result($result);
@@ -86,7 +89,7 @@ function artworkDetail(){
   $grandtotal=0;
   $shipping = 100;
 
-  function outputCartRow($file, $product, $quantity, $price) {
+  function outputCartRow($file, $product, $quantity, $price) {//prints out the row on the cart
 
     echo '<tr>';
     echo '<td><img class="img-thumbnail" src="images/art/works/square-thumbs/' . $file.'.jpg"' . 'alt="..."></td>';
@@ -100,7 +103,7 @@ function artworkDetail(){
     global $grandtotal;
     global $shipping;
     global $tax;
-    $grandtotal = $subtotal + ($subtotal*$tax)+ $shipping;
+    $grandtotal = $subtotal + ($subtotal*$tax)+ $shipping;//calculation from lab 3
   }
   ?>
 
@@ -126,13 +129,13 @@ function artworkDetail(){
       <tr class="success strong">
         <?php
         echo '<td colspan="4" class="moveRight">Subtotal</td>';
-        echo '<td >$'.$subtotal.'</td>';
+        echo '<td >$'.number_format($subtotal,2).'</td>';
         ?>
       </tr>
       <tr class="active strong">
         <?php
         echo '<td colspan="4" class="moveRight">Tax</td>';
-        echo '<td>$'.$subtotal*$tax.'</td>';
+        echo '<td>$'.number_format($subtotal*$tax,2).'</td>';
         ?>
       </tr>
       <tr class="strong">
@@ -142,7 +145,7 @@ function artworkDetail(){
           $shipping=0;
         }
         echo '<td colspan="4" class="moveRight">Shipping</td>';
-        echo '<td>$'.$shipping.'</td>'; ?>
+        echo '<td>$'.number_format($shipping,2).'</td>'; ?>
 
       </tr>
       <tr class="warning strong text-danger">

@@ -2,8 +2,9 @@
 session_start();
 
 if (!ISSET($_GET['id'])) {
-  // code...
   $_GET['id'] =99;
+  //check if the ID is being GET on the page, and if are not being set then send them., this is done to avoid
+  //inital page laoding errors.
 }
 $page = $_SERVER['PHP_SELF'];
 require_once('config.php');
@@ -15,17 +16,20 @@ if ( mysqli_connect_errno() ) {
   die( mysqli_connect_error() );
 }
 
-$sql = "select * from artists where ArtistID=". $_GET['id'];
+$sql = "select * from artists where ArtistID=". $_GET['id'];//query to get the items
+
 if ($result = mysqli_query($connection, $sql)) {
   // loop through the data
   while($row = mysqli_fetch_assoc($result))
   {
+    //grabbing the relevent data values needed to fill the information on the page
     $FirstName = $row['FirstName'];
     $LastName = $row['LastName'];
     if($FirstName==null){
       $fullName = $LastName;
     }else{
       $fullName = $FirstName .' '. $LastName;
+      //First and Last Name values are null in the table so a functionality not to include the null characters
     }
     $Nationality = $row['Nationality'];
     $YearOfBirth = $row['YearOfBirth'];
@@ -85,6 +89,7 @@ mysqli_close($connection);
               <div class="panel-heading"><h4>Artist Details</h4></div>
               <table class="table">
                 <tr>
+                  <!-- //included the the variables created above to display information -->
                   <th>Date:</th>
                   <td><?php echo $YearOfBirth.'-'.$YearOfDeath; ?></td>
                 </tr>

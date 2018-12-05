@@ -2,7 +2,7 @@
 <?php
 
 function artworkDetail(){
-  foreach ($_SESSION['cart'] as $value) {
+  foreach ($_SESSION['cart'] as $value) {//use the session cart array from the display-cart.php
     // code...
 
     require_once('config.php');
@@ -11,7 +11,7 @@ function artworkDetail(){
       die( mysqli_connect_error() );
     }
 
-    $sql = "select * from artworks where ArtWorkID=". $value['artID'];
+    $sql = "select * from artworks where ArtWorkID=". $value['artID'];//sql query
     if ($result = mysqli_query($connection, $sql)) {
       // loop through the data
       while($row = mysqli_fetch_assoc($result))
@@ -21,7 +21,7 @@ function artworkDetail(){
         $Title= $row['Title'];
         $Price = $row['MSRP'];
 
-        outputCartRow($ImageFile, $Title, $value['Quantity'], $Price);
+        outputCartRow($ImageFile, $Title, $value['quantity'], $Price);//out the tiny image of all the artwork in the cart currently
       }
       // release the memory used by the result set
       mysqli_free_result($result);
@@ -33,15 +33,7 @@ function artworkDetail(){
   }
 }
 $subtotal=0;
-function outputCartRow($file, $product, $quantity, $price) {
-
-  // echo '<tr>';
-  // echo '<td><img class="img-thumbnail" src="images/art/works/square-thumbs/' . $file.'.jpg"' . 'alt="..."></td>';
-  // echo '<td>'.$product."</td>";
-  // echo "<td>".$quantity."</td>";
-  // echo "<td>$".number_format($price,2)."</td>";
-  // echo "<td>$".($quantity*$price)."</td>";
-  // echo '</tr>';
+function outputCartRow($file, $product, $quantity, $price) {//the printing of the tiny box of the top right of artworks page
 
   ?>
   <div class="media">
@@ -54,7 +46,7 @@ function outputCartRow($file, $product, $quantity, $price) {
   </div>
   <?php
   global $subtotal;
-  $subtotal += ($quantity*$price);
+  $subtotal += ($quantity*$price);//calculating the subtotal dynamically
 
 }
 
@@ -70,7 +62,9 @@ function outputCartRow($file, $product, $quantity, $price) {
   </div>
   <div class="panel-body">
     <?php artworkDetail(); ?>
-    <strong class="cartText">Subtotal: <span class="text-warning"><?php echo $subtotal; ?></span></strong>
+    <!-- diplaying the image and title here -->
+    <strong class="cartText">Subtotal: <span class="text-warning"><?php echo number_format($subtotal,2); ?></span></strong>
+    <!-- subtotal which is a global variable is being used here to update the value of the pictures -->
     <div>
       <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span> Edit</button>
       <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-arrow-right"></span> Checkout</button>
